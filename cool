@@ -1,0 +1,144 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Age Of Heroes", "Sentinel")
+
+local Tab = Window:NewTab("Blatant")
+local MainSection = Tab:NewSection("Self Explainatory")
+
+MainSection:NewKeybind("Kill Aura", "No Punch CD", Enum.KeyCode.F, function()
+	local args = {
+        [1] = 0.4,
+        [2] = 0.1,
+        [3] = 1
+    }
+    
+    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Punch"):FireServer(unpack(args))
+    
+end)
+
+MainSection:NewToggle("Grab Aura", "Inf Grab But Auto", function(state)
+    if state then
+        local args = {
+            [1] = Vector3.new(-0.6084789037704468, -0.38120922446250916, 0.6960121393203735),
+            [2] = true
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ToggleTelekinesis"):InvokeServer(unpack(args))
+        
+    else
+        local args = {
+            [1] = Vector3.new(0.8997279405593872, -0.43012329936027527, 0.0740511566400528),
+            [2] = false,
+            [3] = workspace:WaitForChild("Civilian")
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ToggleTelekinesis"):InvokeServer(unpack(args))
+        
+    end
+end)
+
+MainSection:NewKeybind("Inf Grab", "No Telekenesis CD", Enum.KeyCode.F, function()
+    local args = {
+        [1] = Vector3.new(-0.6084789037704468, -0.38120922446250916, 0.6960121393203735),
+        [2] = true
+    }
+    
+    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ToggleTelekinesis"):InvokeServer(unpack(args))
+    
+end)
+
+
+MainSection:NewToggle("Barrier", "", function(state)
+    if state then
+        local args = {
+            [1] = true
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ToggleBlocking"):FireServer(unpack(args))
+        
+    else
+        local args = {
+            [1] = false
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ToggleBlocking"):FireServer(unpack(args))
+        
+    end
+end)
+
+MainSection:NewKeybind("Barrier (On)", "", Enum.KeyCode.F, function()
+	local args = {
+        [1] = true
+    }
+    
+    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ToggleBlocking"):FireServer(unpack(args))
+    
+end)
+
+MainSection:NewKeybind("Barrier (Off)", "", Enum.KeyCode.F, function()
+	local args = {
+        [1] = false
+    }
+    
+    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ToggleBlocking"):FireServer(unpack(args))
+    
+end)
+
+MainSection:NewToggle("Super Speed Trail", "Doesn't Give Actual Speed (You can use speed command with this)", function(state)
+    if state then
+        local args = {
+            [1] = true
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ToggleSpeed"):FireServer(unpack(args))
+        
+    else
+        local args = {
+            [1] = false
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ToggleSpeed"):FireServer(unpack(args))
+        
+    end
+end)
+
+
+MainSection:NewToggle("Metal Skin", "(Wasn't Tested)", function(state)
+    if state then
+        local args = {
+            [1] = "metalSkin",
+            [2] = true
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Transform"):FireServer(unpack(args))
+        
+    else
+        local args = {
+            [1] = "metalSkin",
+            [2] = false
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Transform"):FireServer(unpack(args))
+        
+    end
+end)
+
+local Tab = Window:NewTab("Player")
+local PSection = Tab:NewSection("[Player Attributes Increase]")
+
+PSection:NewSlider("Speed", "Can Be Added Onto Lightning Trail", 10000, 0, function(s) -- 10000 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+PSection:NewButton("Fix Grab Aura", "Removes The Aura On Your Hand", function()
+    local args = {
+        [1] = Vector3.new(-0.9027532339096069, -0.27960166335105896, -0.32689350843429565),
+        [2] = false,
+        [3] = workspace:WaitForChild("Civilian")
+    }
+    
+    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ToggleTelekinesis"):InvokeServer(unpack(args))
+    
+end)
+
+local Tab = Window:NewTab("Others")
+local OSection = Tab:NewSection("[Other Scripts]")
